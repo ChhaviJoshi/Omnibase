@@ -20,11 +20,8 @@ public class UserService {
 
     public User updateUser(User user) {
         if(!userDb.containsKey(user.getId()))
-            //return ResponseEntity.notFound().build();
-        //return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-            return null;
+            throw new IllegalArgumentException("User with ID " + user.getId() + " does not exist!");
         userDb.put(user.getId(), user);
-        //return ResponseEntity.status(HttpStatus.OK).body(user);
         return user;
     }
 
@@ -39,6 +36,8 @@ public class UserService {
     }
 
     public List<User> getAllUsers() {
+        if(userDb.isEmpty())
+            throw new NullPointerException("No users found in the database");
         return new ArrayList<>(userDb.values());
     }
 
