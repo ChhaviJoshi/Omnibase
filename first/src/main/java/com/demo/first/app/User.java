@@ -1,6 +1,5 @@
 package com.demo.first.app;
 
-
 //POJO class --> plain Old Java Objects
 public class User {
     private int id;

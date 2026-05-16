@@ -1,5 +1,7 @@
-package com.demo.first.app;
+package com.demo.first.controller;
 
+import com.demo.first.app.User;
+import com.demo.first.app.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,16 +26,14 @@ public class UserController {
     @PutMapping
     public ResponseEntity<User> updateUser(@RequestBody User user) {
         User updated = userService.updateUser(user);
-        if(updated == null)
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         return ResponseEntity.ok(updated);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteUser(@PathVariable int id) {
         boolean isDeleted = userService.deleteUser(id);
-        if(!isDeleted)
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+//        if(!isDeleted)
+//            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         return ResponseEntity.noContent().build();
     }
 
