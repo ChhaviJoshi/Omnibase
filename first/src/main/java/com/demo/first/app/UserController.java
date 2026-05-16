@@ -4,10 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequestMapping("/user")
@@ -77,23 +74,12 @@ public class UserController {
     }
 
     @GetMapping("/info/{id}")
-    public String getInfor(
+    public String getInfo(
             @PathVariable int id,
             @RequestParam String name,
             @RequestHeader("User-Agent") String usersAgent) {
         return "UserAgent: " + usersAgent
                 + " : " + id
                 + " : " + name;
-    }
-
-    //EXCEPTION HANDLING
-    @ExceptionHandler({IllegalArgumentException.class, NullPointerException.class})
-    public ResponseEntity<Map<String, Object>> handleException(Exception exception) {
-        Map<String, Object> errorResponse = new HashMap<>();
-        errorResponse.put("timestamp", LocalDateTime.now());
-        errorResponse.put("status", HttpStatus.BAD_REQUEST.value());
-        errorResponse.put("error", "Bad request");
-        errorResponse.put("messge", exception.getMessage());
-        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
     }
 }

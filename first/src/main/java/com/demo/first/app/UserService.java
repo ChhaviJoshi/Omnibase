@@ -1,5 +1,8 @@
 package com.demo.first.app;
 
+import com.demo.first.exceptions.UserNotFoundException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -10,8 +13,14 @@ import java.util.Map;
 @Service
 public class UserService {
     private Map<Integer, User> userDb = new HashMap<>();
+    private Logger logger = LoggerFactory.getLogger(UserService.class);
 
     public User createUser(User user) {
+        logger.info("Creating user... INFO");
+        logger.debug("Creating user... DEBUG");
+        logger.warn("Creating user... WARN");
+        logger.trace("Creating user... TRACE");
+        logger.error("Creating user... ERROR");
          System.out.println(user.getEmail());
          userDb.putIfAbsent(user.getId(), user);
          //return ResponseEntity.status(HttpStatus.CREATED).body(user);
@@ -19,19 +28,18 @@ public class UserService {
     }
 
     public User updateUser(User user) {
-        if(!userDb.containsKey(user.getId()))
-            throw new IllegalArgumentException("User with ID " + user.getId() + " does not exist!");
+        if(!userDb.containsKey(user.getId())) {
+            logger.error("Error when finding user with id {} ", user.getId());
+            throw new UserNotFoundException("User with ID " + user.getId() + " does not exist!");
+        }
         userDb.put(user.getId(), user);
         return user;
     }
 
     public boolean deleteUser(int id) {
         if(!userDb.containsKey(id))
-            //return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-            return false;
+            throw new UserNotFoundException("User with ID " + id + " does not exist!");
         userDb.remove(id);
-        //return ResponseEntity.ok("User Deleted");
-        //return ResponseEntity.noContent().build();
         return true;
     }
 
