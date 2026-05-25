@@ -1,9 +1,8 @@
-package com.omnibase.app;
+package com.omnibase.app.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 //POJO class --> plain Old Java Objects
 @Entity
@@ -13,6 +12,14 @@ public class User {
     private int id;
     private String name;
     private String email;
+
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    private Profile profile;
+
+    //CREATING A FUNCTIONALITY POST: A USER CAN DO MANY POSTS
+    //HAD WE NOT USED mappedBy, CREATES A NEW user_posts TABLE
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Post> posts;
 
     public User() {
     }

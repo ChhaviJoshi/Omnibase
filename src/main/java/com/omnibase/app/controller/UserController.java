@@ -1,7 +1,7 @@
-package com.omnibase.controller;
+package com.omnibase.app.controller;
 
-import com.omnibase.app.User;
-import com.omnibase.service.UserService;
+import com.omnibase.app.model.User;
+import com.omnibase.app.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

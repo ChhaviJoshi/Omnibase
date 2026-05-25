@@ -1,4 +1,4 @@
-package com.omnibase.exceptions;
+package com.omnibase.app.exceptions;
 
 public class UserNotFoundException extends RuntimeException{
     public UserNotFoundException(String message) {

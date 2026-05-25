@@ -1,4 +1,4 @@
-package com.omnibase;
+package com.omnibase.app;
 
 import org.springframework.boot.CommandLineRunner;
 

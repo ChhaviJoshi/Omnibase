@@ -1,6 +1,6 @@
-package com.omnibase;
+package com.omnibase.app;
 
-import com.omnibase.app.User;
+import com.omnibase.app.model.User;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

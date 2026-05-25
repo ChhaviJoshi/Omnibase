@@ -1,8 +1,8 @@
-package com.omnibase.service;
+package com.omnibase.app.service;
 
-import com.omnibase.app.User;
-import com.omnibase.exceptions.UserNotFoundException;
-import com.omnibase.repository.UserRepository;
+import com.omnibase.app.model.User;
+import com.omnibase.app.exceptions.UserNotFoundException;
+import com.omnibase.app.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
