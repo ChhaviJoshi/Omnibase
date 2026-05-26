@@ -10,6 +10,15 @@ public class Tag {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    private String name;
+
     @ManyToMany(mappedBy = "tags")
     private List<Post> posts;
+
+    public Tag() {
+    }
+
+    public Tag(String name) {
+        this.name = name;
+    }
 }
